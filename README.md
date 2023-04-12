@@ -7,7 +7,7 @@
 <h1> How to run it Locally </h1>
 
 <h4> Stap 1 : </h4>
-<p> Create a Database locally </p>
+<p> Create a Database locally and import the user_model.sql file</p>
 
 <h4> Stap 2 : </h4>
 <p> Download the project</p>
