@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\UserModel;
 
 
 class UserController extends Controller
@@ -17,7 +17,7 @@ class UserController extends Controller
     // call The index page and fetch the data code 
     function index(){
 
-        $data = User::latest()->paginate();
+        $data = UserModel::latest()->paginate();
         return view('index',compact('data'));
     }
 
@@ -49,7 +49,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $user = new User;
+        $user = new UserModel;
 
         $user->username = $request->username;
         $user->email = $request->email;
@@ -62,24 +62,24 @@ class UserController extends Controller
     }
 
     // delete the user 
-    public function destroy(User $user){
+    public function destroy(UserModel $user){
         $user->delete();
         return redirect()->route('user.index')->with('success','User Deleted Successfully');
     }
 
     // show single user information 
-    public function show(User $user)
+    public function show(UserModel $user)
     {
         return view('show', compact('user'));
     }
 
     // call the edit user page and pass the single user data
-    public function edit(User $user)
+    public function edit(UserModel $user)
     {
         return view('edit',compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, UserModel $user)
     {
         $request->validate([
             'username' => 'required',
@@ -88,7 +88,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::find($request->id);
+        $user = UserModel::find($request->id);
 
         $user->username = $request->username;
         $user->email = $request->email;
